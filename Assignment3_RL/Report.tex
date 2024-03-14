@@ -1,0 +1,71 @@
+\documentclass{article}
+
+\usepackage{graphicx} % Required for inserting images
+\usepackage{verbatim}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{fancyvrb}
+\usepackage{varwidth}
+\usepackage{amsmath}
+\usepackage{siunitx}
+\usepackage{caption}
+\usepackage{subcaption}
+
+
+\title{Foundations of Intelligent and Learning Agents\\CS747}
+\author{Mohit\\20D070052 }
+\date{November 2023}
+
+\begin{document}
+
+\maketitle
+\begin{figure}[H]
+\begin{center}
+\includegraphics[scale = 0.2]{LOGO.jpeg}
+\end{center}
+\end{figure}
+\section{Student Details}
+\begin{tabular}{ l l  }
+ Name: & Mohit \\ 
+ Roll No: & 20D070052  \\  
+\end{tabular}
+
+\newpage
+
+
+
+\section{Billiards Game Algorithm}
+The algorithm for the assignment is given below:
+
+\subsection{Function for Distance and Angle}
+Firstly we need to define a function to find the distance and angles as per the given scheme. \\
+
+Distance : Calculating the distance is simple, we will specify the X and Y coordinates of 2 points between which we want to calculate the distance. This can be between 2 balls or between the ball and a hole. For this we calculate sum of the square of differences between X and Y coordinates and take the square root of that to get the final distance.\\
+
+Angle : For calculating the angle we have to take care of multiple conditions, if the x coordinate is same then the angle would be either 0.5 or -0.5, so that has been taken care off, also if the y coordinate is same then the angle would be either 0 or 1. Now according to the given orientation of axis in question, if the second object is towards the right and below the first object then the angle will be negative and grater than 0.5, else if the second object is towards the left and below the first object then the angle will be positive and greater than 0.5. Finally if in other 2 quadrants then the angle will be tan inverse x distance by y distance.
+
+\subsection{Method 1}
+
+We will check for a case if the cue ball, any other ball and a hole is nearly in a same line. For this we calculate the angle between cue ball and other balls and other balls with the holes. And if the difference between angles is less than a threshold (0.1) then we hit that ball towards the hole to try and pot it with a fixed force of 0.75. \\
+
+Now if such a case is not available then we will hit the nearest ball with full power. This was the initial method I tried however this was not working well hence I propose another method up next.
+
+\subsection{Method 2}
+
+Just by hitting the nearest ball was not performing good, hence I used another technique in which instead of hitting the closest ball to the cue ball, we hit the ball which is closest to a hole so that it has a higher chance of going into the pot. Also we hit the ball with maximum force so that even after deflection it has a good chance of going into the pot (That's what we do in real game).
+
+
+\subsection{Observations}
+
+\begin{itemize}
+\item I have kept the force to be fixed since I observed that it was performing good and on making the force a variable it was a bit difficult it was exceeding the number of tries for more number of levels because of hitting too slow at times.
+
+\item For higher number of balls this approach was not working very well since more balls led to more collisions other than our actual target.
+\end{itemize}
+
+
+
+
+
+\end{document}
